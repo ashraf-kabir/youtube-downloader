@@ -29,13 +29,13 @@ def startDownload():
             return
         # creating youtube object with URL
         ob = YouTube(url, on_progress_callback=progress)
-        strm = ob.streams.filter(progressive=True, file_extension='mp4').order_by('resolution').desc().first()
-        file_size = strm.filesize
-        # print(strm.title)
-        vTitle.config(text=strm.title)
+        stream = ob.streams.filter(progressive=True, file_extension='mp4').order_by('resolution').desc().first()
+        file_size = stream.filesize
+        # print(stream.title)
+        vTitle.config(text=stream.title)
         vTitle.pack(side=TOP)
         print(file_size)
-        strm.download(path_to_save_video)
+        stream.download(path_to_save_video)
         # print("Download completed...")
         dBtn.config(text='Start Download')
         dBtn.config(state=NORMAL)
